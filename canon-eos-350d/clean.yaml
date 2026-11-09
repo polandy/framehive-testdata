@@ -1,0 +1,48 @@
+# SPDX-FileCopyrightText: 2026 Framehive contributors
+# SPDX-License-Identifier: GPL-3.0-or-later
+#
+# Every change `clean.sh` makes to the owner's originals for the set canon-eos-350d-v1.
+# `clean.sh` reads `test_serial_number` and `files`; the other keys document the result.
+
+schema_version: 1
+set: canon-eos-350d-v1
+copyright: 2016 Andy Pollari
+license: LicenseRef-Framehive-Test-Data
+camera: Canon EOS 350D DIGITAL
+content: a pink cosmos flower, no people, no GPS
+test_serial_number: 1234567890
+
+files:
+  - original: IMG_0838.dng
+    published: eos-350d-cosmos.dng
+    kind: image
+    about: Adobe Photoshop Lightroom 6.6.1 conversion of the CR2, lossless JPEG, DNG 1.4
+  - original: IMG_0838.JPG
+    published: eos-350d-cosmos.JPG
+    kind: image
+    about: the camera JPEG of the same shot (RAW + JPEG)
+  - original: IMG_0838.dng.xmp
+    published: eos-350d-cosmos.dng.xmp
+    kind: sidecar
+    about: darktable sidecar, xmp:Rating 1
+  - original: IMG_0838.JPG.xmp
+    published: eos-350d-cosmos.JPG.xmp
+    kind: sidecar
+    about: darktable sidecar, xmp:Rating 1
+
+changes:
+  - File names IMG_0838 become eos-350d-cosmos; the extensions keep their case.
+  - Every serial number tag that exists is set to test_serial_number, and no tag is
+    added. The DNG has EXIF SerialNumber, DNG CameraSerialNumber, XMP aux:SerialNumber
+    and the Canon maker note SerialNumber; the JPEG has only the Canon maker note one.
+  - Every GPS tag is removed. The originals have none, so this changes nothing.
+  - exiftool rewrites the DNG's embedded XMP packet with the same values in another
+    order, and xmptk becomes "Image::ExifTool <version>". The raw data, its
+    NewRawImageDigest and the previews are unchanged; only their offsets move.
+  - In each sidecar, xmpMM:DerivedFrom names the published image instead of the
+    original one. Nothing else in the sidecars changes.
+
+kept:
+  - OriginalRawFileName IMG_0838.CR2 and the xmpMM document IDs in the DNG.
+  - Artist, OwnerName and dc:creator, which are all "unknown".
+  - Capture time 2016-10-12 14:01:18 (no time zone), exposure, lens and maker notes.

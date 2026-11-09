@@ -1,0 +1,27 @@
+Framehive Test Data Licence, version 1
+
+Copyright (c) 2016 Andy Pollari. All rights reserved, except as granted below.
+
+This licence covers the photos, their XMP sidecar files and every archive that
+contains them ("the Files"), as published in the framehive-testdata repository and
+its releases, and copies of these sidecar files in the Framehive repository.
+
+1. Permission. You may download, store, copy and redistribute the Files, free of
+   charge, solely for developing and testing Framehive
+   (https://github.com/polandy/framehive), including modified versions of Framehive,
+   for example in a fork, a mirror, a package build or a continuous integration cache.
+
+2. Conditions. Every copy keeps this licence, or a reference to it, beside the Files.
+   The Files are redistributed unmodified, as published.
+
+3. No other use. Any other use needs the prior written permission of the copyright
+   holder. This includes, without limitation: publishing, printing or exhibiting the
+   images; using them in other software, products, documentation, datasets or as
+   training data for machine-learning models; and selling or licensing them.
+
+4. No warranty. The Files are provided "as is", without warranty of any kind. The
+   copyright holder is not liable for any claim, damages or other liability arising
+   from the Files or their use.
+
+The copyright holder may grant further permissions in writing. This licence does not
+transfer the copyright.
