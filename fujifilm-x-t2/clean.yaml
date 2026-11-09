@@ -1,0 +1,51 @@
+# SPDX-FileCopyrightText: 2026 Framehive contributors
+# SPDX-License-Identifier: GPL-3.0-or-later
+#
+# Every change `clean.sh` makes to the owner's originals for the set fujifilm-x-t2-v1.
+# `clean.sh` reads `test_serial_number`, `replace_original_names` and `files`; the other
+# keys document the result.
+
+schema_version: 1
+set: fujifilm-x-t2-v1
+copyright: 2023 Andy Pollari
+license: LicenseRef-Framehive-Test-Data
+camera: FUJIFILM X-T2
+content: a stone villa below a mountain, no people, no GPS
+test_serial_number: 1234567890
+replace_original_names: true
+
+files:
+  - original: XT2A0957.RAF
+    published: x-t2-stone-villa.RAF
+    kind: image
+    about: lossless compressed RAF, film simulation Provia (Standard)
+  - original: XT2A0957.JPG
+    published: x-t2-stone-villa.JPG
+    kind: image
+    about: the camera JPEG of the same shot (RAW + JPEG)
+  - original: XT2A0957.RAF.xmp
+    published: x-t2-stone-villa.RAF.xmp
+    kind: sidecar
+    about: darktable sidecar, xmp:Rating 1
+  - original: XT2A0957.JPG.xmp
+    published: x-t2-stone-villa.JPG.xmp
+    kind: sidecar
+    about: darktable sidecar, xmp:Rating 1
+
+changes:
+  - File names XT2A0957 become x-t2-stone-villa; the extensions keep their case.
+  - Every serial number tag that exists is set to test_serial_number, and no tag is
+    added: EXIF SerialNumber, LensSerialNumber and the Fujifilm maker note
+    InternalSerialNumber, in both files.
+  - The RAF repeats the body and lens serial numbers as text in a Fujifilm data block
+    that exiftool cannot write; clean.sh overwrites them there in place with the test
+    value, repeated and cut to the same length.
+  - Every GPS tag is removed. The originals have none, so this changes nothing.
+  - The raw data and the previews are unchanged; only offsets may move.
+  - In each sidecar, xmpMM:DerivedFrom names the published image instead of the
+    original one.
+
+kept:
+  - Artist, Copyright and dc:creator "Andy Pollari", the copyright holder.
+  - Capture time 2023-10-02 12:05:23 (no time zone), film simulation Provia, lens XF35mmF1.4 R, firmware Ver4.40 and the
+    maker notes.

@@ -1,0 +1,56 @@
+# SPDX-FileCopyrightText: 2026 Framehive contributors
+# SPDX-License-Identifier: GPL-3.0-or-later
+#
+# Every change `clean.sh` makes to the owner's originals for the set canon-eos-7d-v1.
+# `clean.sh` reads `test_serial_number`, `replace_original_names` and `files`; the other
+# keys document the result.
+
+schema_version: 1
+set: canon-eos-7d-v1
+copyright: 2015 Andy Pollari
+license: LicenseRef-Framehive-Test-Data
+camera: Canon EOS 7D
+content: a brick hut behind bamboo and trees, no people, GPS removed
+test_serial_number: 1234567890
+replace_original_names: true
+
+files:
+  - original: thailand-2015-7d-8645.dng
+    published: eos-7d-garden-house.dng
+    kind: image
+    about: Adobe Photoshop Lightroom 6.3 conversion of the CR2, saved again by Lightroom 6.6.1
+  - original: thailand-2015-7d-8645.JPG
+    published: eos-7d-garden-house.JPG
+    kind: image
+    about: the camera JPEG of the same shot (RAW + JPEG), small size 2592x1728
+  - original: thailand-2015-7d-8645.dng.xmp
+    published: eos-7d-garden-house.dng.xmp
+    kind: sidecar
+    about: darktable sidecar, xmp:Rating 1, keyword Selektion
+  - original: thailand-2015-7d-8645.JPG.xmp
+    published: eos-7d-garden-house.JPG.xmp
+    kind: sidecar
+    about: darktable sidecar, xmp:Rating 0
+
+changes:
+  - File names thailand-2015-7d-8645 become eos-7d-garden-house; the extensions keep
+    their case. replace_original_names also rewrites OriginalRawFileName (now
+    eos-7d-garden-house.CR2) and crs:RawFileName in the DNG.
+  - Every serial number tag that exists is set to test_serial_number, and no tag is
+    added. Both files have EXIF SerialNumber and the Canon maker note SerialNumber,
+    InternalSerialNumber and LensSerialNumber; the DNG also has DNG CameraSerialNumber
+    and XMP aux:SerialNumber. The camera's own serial number is all zeros.
+  - Every GPS tag is removed: the DNG's GPS IFD with position and altitude, the JPEG's
+    lone GPSVersionID, and the exif:GPS properties of the DNG's sidecar.
+  - exiftool rewrites the DNG's embedded XMP packet with the same values in another
+    order, and xmptk becomes "Image::ExifTool <version>". The raw data and the previews
+    are unchanged; only their offsets move.
+  - In each sidecar, xmpMM:DerivedFrom names the published image instead of the
+    original one.
+
+kept:
+  - The xmpMM document IDs in the DNG.
+  - Artist, Copyright and OwnerName, which are empty.
+  - Capture time: the DNG says 2015-08-10 10:41:56, six hours after the JPEG's
+    04:41:56.33, because Lightroom shifted it; neither has a time zone.
+  - Exposure, lens (EF16-35mm f/4L IS USM) and maker notes.

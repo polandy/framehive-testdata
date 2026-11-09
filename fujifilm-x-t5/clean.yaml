@@ -1,0 +1,51 @@
+# SPDX-FileCopyrightText: 2026 Framehive contributors
+# SPDX-License-Identifier: GPL-3.0-or-later
+#
+# Every change `clean.sh` makes to the owner's originals for the set fujifilm-x-t5-v1.
+# `clean.sh` reads `test_serial_number`, `replace_original_names` and `files`; the other
+# keys document the result.
+
+schema_version: 1
+set: fujifilm-x-t5-v1
+copyright: 2024 Andy Pollari
+license: LicenseRef-Framehive-Test-Data
+camera: FUJIFILM X-T5
+content: a mountain lake with forest; a few distant, out-of-focus figures on the far shore that are not recognisable; no GPS
+test_serial_number: 1234567890
+replace_original_names: true
+
+files:
+  - original: 20240928-1325-29_ferien-samedan_dscf9854.raf
+    published: x-t5-mountain-lake.raf
+    kind: image
+    about: lossless compressed RAF, film simulation Velvia, OffsetTimeOriginal +02:00
+  - original: 20240928-1325-29_ferien-samedan_dscf9854.jpg
+    published: x-t5-mountain-lake.jpg
+    kind: image
+    about: the camera JPEG of the same shot (RAW + JPEG)
+  - original: 20240928-1325-29_ferien-samedan_dscf9854.raf.xmp
+    published: x-t5-mountain-lake.raf.xmp
+    kind: sidecar
+    about: darktable sidecar, xmp:Rating 0, darktable format tags
+  - original: 20240928-1325-29_ferien-samedan_dscf9854.jpg.xmp
+    published: x-t5-mountain-lake.jpg.xmp
+    kind: sidecar
+    about: darktable sidecar, xmp:Rating 0, darktable format tags
+
+changes:
+  - File names 20240928-1325-29_ferien-samedan_dscf9854 become x-t5-mountain-lake; the lowercase extensions stay.
+  - Every serial number tag that exists is set to test_serial_number, and no tag is
+    added: EXIF SerialNumber, LensSerialNumber and the Fujifilm maker note
+    InternalSerialNumber, in both files.
+  - The RAF repeats the body and lens serial numbers as text in a Fujifilm data block
+    that exiftool cannot write; clean.sh overwrites them there in place with the test
+    value, repeated and cut to the same length.
+  - Every GPS tag is removed. The originals have none, so this changes nothing.
+  - The raw data and the previews are unchanged; only offsets may move.
+  - In each sidecar, xmpMM:DerivedFrom names the published image instead of the
+    original one.
+
+kept:
+  - Artist, Copyright and dc:creator "Andy Pollari", the copyright holder.
+  - Capture time 2024-09-28 13:25:29 +02:00, film simulation Velvia, lens XF33mmF1.4 R LM WR, firmware Ver4.00 and the
+    maker notes.

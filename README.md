@@ -25,6 +25,9 @@ The scripts, `clean.yaml` files and this README are GPL-3.0-or-later, like Frame
 | Set (release tag) | Unpacked to | Files | Used by |
 |---|---|---|---|
 | `canon-eos-350d-v1` | `dng/canon-eos-350d/` | Lightroom DNG and camera JPEG of one shot, with darktable sidecars | Framehive CORE-004, CORE-010, PREVIEWS-001 |
+| `canon-eos-7d-v1` | `canon/eos-7d/` | Lightroom DNG and camera JPEG of one shot, with darktable sidecars | Framehive CORE-003, CORE-005, CORE-010, IMPORT-021, PREVIEWS-001 |
+| `fujifilm-x-t2-v1` | `fujifilm/x-t2/` | Lossless compressed RAF and camera JPEG of one shot, with darktable sidecars | Framehive CORE-001, CORE-005, CORE-010, IMPORT-021, PREVIEWS-001 |
+| `fujifilm-x-t5-v1` | `fujifilm/x-t5/` | Lossless compressed RAF and camera JPEG of one shot, with darktable sidecars | Framehive CORE-001, CORE-005, CORE-010, IMPORT-021, PREVIEWS-001 |
 
 Each set has a directory here with its `clean.yaml`, which documents every change made
 to the originals.
@@ -37,11 +40,15 @@ to the originals.
   output of `clean.sh` is uploaded.
 - **Cleaning removes:** every serial number (replaced by the documented test value
   `test_serial_number`, so that tests can read one), every GPS tag, and photos with
-  people are not used at all.
+  recognisable people are not used at all.
+- **Names are neutral.** Published names say camera and subject, never place, trip or
+  date. With `replace_original_names: true`, `clean.sh` also rewrites the original
+  name inside the files (`OriginalRawFileName`, `crs:RawFileName`) and refuses the
+  result if any original name remains.
 
 ## Publishing a set
 
-Inside Framehive's `nix develop` (for exiftool, GNU tar, zstd, b3sum and xxd):
+Inside Framehive's `nix develop` (for exiftool, perl, GNU tar, zstd, b3sum and xxd):
 
 ```sh
 ./clean.sh <set-dir> <originals-dir> <output-dir>
@@ -51,4 +58,7 @@ gh release create <set> <output-dir>/<set>.tar.zst --repo polandy/framehive-test
 
 `clean.sh` copies the originals, cleans the copies, refuses the result if an original
 serial number (as text or as a 32-bit value) or a GPS tag remains, and packs a
-reproducible archive. It prints the `testdata.lock` line to add to Framehive.
+reproducible archive. exiftool cannot write every place a camera stores its serial
+number (Fujifilm RAF files repeat it in a binary block), so `clean.sh` also overwrites
+any remaining copy of an original serial number in place, with the test value at the
+same length. Sidecars lose their `exif:GPS*` properties. It prints the `testdata.lock` line to add to Framehive.
