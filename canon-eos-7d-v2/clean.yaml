@@ -1,0 +1,46 @@
+# SPDX-FileCopyrightText: 2026 Framehive contributors
+# SPDX-License-Identifier: GPL-3.0-or-later
+#
+# Every change `clean.sh` makes to the owner's originals for the set canon-eos-7d-v2.
+# `clean.sh` reads `test_serial_number`, `replace_original_names` and `files`; the other
+# keys document the result.
+
+schema_version: 1
+set: canon-eos-7d-v2
+copyright: 2014 Andy Pollari
+license: LicenseRef-Framehive-Test-Data
+camera: Canon EOS 7D
+content: a glass facade at night and a short clip of tyre tracks in sand, no people, no GPS
+test_serial_number: 1234567890
+replace_original_names: false
+
+files:
+  - original: _MG_1309.CR2
+    published: _MG_1309.CR2
+    kind: image
+    about: CR2 in RAW size (5184x3456), shot in Adobe RGB
+  - original: _MG_1309.JPG
+    published: _MG_1309.JPG
+    kind: image
+    about: the camera JPEG of the same shot (RAW + JPEG), Adobe RGB, 5184x3456
+  - original: MVI_9726.MOV
+    published: MVI_9726.MOV
+    kind: video
+    about: 1.3 s of H.264 1920x1080 at 25 fps with PCM audio, without a THM file
+
+changes:
+  - The file names stay as the camera wrote them. The `_MG_` prefix marks Adobe RGB and
+    `MVI_` marks a video (CORE-003), and a camera counter reveals no place or trip, so
+    replace_original_names is false.
+  - Every serial number tag that exists is set to test_serial_number, and no tag is
+    added. The CR2 and the JPEG have EXIF SerialNumber and the Canon maker note
+    SerialNumber, InternalSerialNumber and LensSerialNumber. The camera's own serial
+    number is all zeros. The video has no serial number.
+  - Every GPS tag is removed: the CR2's and the JPEG's lone GPSVersionID.
+  - The video is copied unchanged. It has no serial number, GPS tag or file name inside;
+    its XMP packet only records Adobe Premiere Pro CS6 saving it.
+
+kept:
+  - Artist, Copyright and OwnerName, which are empty.
+  - Capture time 2014-10-16 15:58:05 of the CR2 and the JPEG, without a time zone.
+  - Exposure, lens (EF-S18-135mm f/3.5-5.6 IS) and maker notes.

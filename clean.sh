@@ -91,6 +91,9 @@ while read -r original published kind; do
                     "$target/$published"
             fi
             ;;
+        video)
+            # Copied unchanged; the checks below fail if it holds a serial number or GPS tag.
+            ;;
         sidecar)
             sed -i "s|xmpMM:DerivedFrom=\"${original%.xmp}\"|xmpMM:DerivedFrom=\"${published%.xmp}\"|" \
                 "$target/$published"

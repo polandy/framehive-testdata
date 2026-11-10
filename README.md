@@ -26,6 +26,7 @@ The scripts, `clean.yaml` files and this README are GPL-3.0-or-later, like Frame
 |---|---|---|---|
 | `canon-eos-350d-v1` | `dng/canon-eos-350d/` | Lightroom DNG and camera JPEG of one shot, with darktable sidecars | Framehive CORE-004, CORE-010, PREVIEWS-001 |
 | `canon-eos-7d-v1` | `canon/eos-7d/` | Lightroom DNG and camera JPEG of one shot, with darktable sidecars | Framehive CORE-003, CORE-005, CORE-010, IMPORT-021, PREVIEWS-001 |
+| `canon-eos-7d-v2` | `canon/eos-7d-v2/` | CR2 and camera JPEG of one shot in Adobe RGB (`_MG_` prefix), and an `MVI_` MOV without THM | Framehive CORE-001, CORE-003, ADR 0017 |
 | `fujifilm-x-t2-v1` | `fujifilm/x-t2/` | Lossless compressed RAF and camera JPEG of one shot, with darktable sidecars | Framehive CORE-001, CORE-005, CORE-010, IMPORT-021, PREVIEWS-001 |
 | `fujifilm-x-t5-v1` | `fujifilm/x-t5/` | Lossless compressed RAF and camera JPEG of one shot, with darktable sidecars | Framehive CORE-001, CORE-005, CORE-010, IMPORT-021, PREVIEWS-001 |
 
